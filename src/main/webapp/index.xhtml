@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+	</h:head>
+	<h:body>
+		<h2>Agenda de contactos</h2>
+		<h:panelGroup rendered="#{empty viewManager.cacheList}">
+			<p>No hay ningún contacto.</p>
+		</h:panelGroup>
+		<h:panelGroup rendered="#{!viewManager.edit}">
+			<h3>Añade un contacto:</h3>
+			<h:form>
+				<p>Nombre:
+					<h:inputText value="#{viewManager.item.key}" />
+				</p>
+				<p>Telefono:
+					<h:inputText value="#{viewManager.item.value}" />
+				</p>
+				<p>
+					<h:commandButton value="Añadir" action="#{viewManager.add}" />
+				</p>
+			</h:form>
+		</h:panelGroup>
+		<h:panelGroup rendered="#{viewManager.edit}">
+			<h3>Editar contacto #{viewManager.item.key}</h3>
+			<h:form>
+				<p>Nombre:
+					<h:inputText value="#{viewManager.item.key}" />
+				</p>
+				<p>Telefono:
+					<h:inputText value="#{viewManager.item.value}" />
+				</p>
+				<p>
+					<h:commandButton value="Guardar" action="#{viewManager.save}" />
+				</p>
+			</h:form>
+		</h:panelGroup>
+			<h:form rendered="#{not empty viewManager.cacheList}">
+			</h:form>
+			<h:form rendered="#{not empty viewManager.cacheList}">
+				<h:dataTable value="#{viewManager.cacheList}" var="item">
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						<h:outputText value="#{item.key}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Telefono</f:facet>
+						<h:outputText value="#{item.value}" />
+					</h:column>
+					<h:column>
+						<h:commandButton value="Editar contacto" action="#{viewManager.edit(item)}" />
+					</h:column>
+					<h:column>
+						<h:commandButton value="Eliminar" action="#{viewManager.delete(item)}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>		
+	</h:body>
+</html>
