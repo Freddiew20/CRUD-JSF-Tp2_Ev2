@@ -1,5 +1,5 @@
 # CRUD-JSF-Tp2_Ev2
-CRUD de agenda de contactos con ViewScoped y CodeIgniter.
+CRUD de agenda de contactos en JSF.
 
 ### Necesario para ejecutar: 
       Instalación de Maven
